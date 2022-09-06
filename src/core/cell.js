@@ -15,13 +15,13 @@ const infixExprToSuffixExpr = (src) => {
   let oldc = '';
 
   const xSheetMap = [];
-  const sheetRegex = /(?<=\(|;|,)(?:(?!;).)*(?<=!)/g;
+  const sheetRegex = new RegExp("(?<=\(|;|,)(?:(?!;).)*(?<=!)", "g");
   if (source.includes('!')) {
-    const [exprContents] = source.match(/(?<=\()(.*?)(?=\))/); // get contents inside brackets
+    const [exprContents] = source.match(new RegExp("(?<=\()(.*?)(?=\))")); // get contents inside brackets
     const arrayOfArgs = exprContents.replaceAll(',', ';').split(';');
     for (const elm of arrayOfArgs) {
-      const elmRegex = /(?<=^)(.*?)(?=!)/g;
-      const cellRegex = /(?<=!)(.*?)(?=\)|$)/g;
+      const elmRegex = new RegExp("(?<=^)(.*?)(?=!)", "g");
+      const cellRegex = new RegExp("(?<=!)(.*?)(?=\)|$)", "g");
       const [sheet] = elm.match(elmRegex) || [];
       const [cellOrRange] = elm.match(cellRegex) || [elm];
 
