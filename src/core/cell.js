@@ -15,7 +15,7 @@ const infixExprToSuffixExpr = (src) => {
   let oldc = '';
 
   const xSheetMap = [];
-  const sheetRegex = new RegExp("(?<=\(|;|,)(?:(?!;).)*(?<=!)", "g");
+  const sheetRegex = new RegExp("(?<=\\(|;|,)(?:(?!;).)*(?<=!)", "g");
   if (source.includes('!')) {
     const [exprContents] = source.match(new RegExp("(?<=\()(.*?)(?=\))")); // get contents inside brackets
     const arrayOfArgs = exprContents.replaceAll(',', ';').split(';');
